@@ -1,0 +1,1 @@
+In one short paragraph, explain the difference between @RequestBody and @RequestParam in Spring MVC. We use Spring Boot 3 and Java 17.

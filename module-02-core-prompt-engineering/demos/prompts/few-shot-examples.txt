@@ -1,0 +1,24 @@
+# Few-shot examples
+
+## Zero-shot (no examples)
+Generate a Spring Boot REST controller for Product
+
+## Few-shot (with example)
+Generate a controller like this:
+```java
+@RestController
+@RequestMapping("/api/products")
+public class ProductController {
+    private final ProductService service;
+    
+    public ProductController(ProductService service) {
+        this.service = service;
+    }
+    
+    @GetMapping
+    public ResponseEntity<List<Product>> getAll() {
+        return ResponseEntity.ok(service.findAll());
+    }
+}
+```
+Now generate another one for User.

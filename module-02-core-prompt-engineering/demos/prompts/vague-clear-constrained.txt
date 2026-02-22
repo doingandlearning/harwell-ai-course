@@ -1,0 +1,10 @@
+# Three prompts: vague → clear → constrained
+
+## Prompt 1: Vague
+Write some code for Spring Boot
+
+## Prompt 2: Clear
+Generate a Spring Boot REST controller with one GET endpoint that returns a list of users
+
+## Prompt 3: Clear + Context + Constraints
+Generate a Spring Boot 3 REST controller using Java 17. Use constructor injection (not @Autowired), return ResponseEntity<List<User>>, and include proper error handling. Don't use Optional for return types.

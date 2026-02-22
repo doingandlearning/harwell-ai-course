@@ -1,0 +1,38 @@
+# Module 5 RAG demo — pgvector + OpenAI or Ollama
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+  ai:
+    vectorstore:
+      pgvector:
+        initialize-schema: true
+        index-type: HNSW
+        distance-type: COSINE_DISTANCE
+        # dimensions: set per profile (OpenAI 1536, Ollama nomic-embed-text 768)
+
+# Default: use Ollama (local, no API key). Override with spring.profiles.active=openai for OpenAI.
+spring.ai.model.chat: ollama
+spring.ai.model.embedding: ollama
+spring.ai.vectorstore.pgvector.dimensions: 768
+
+# Seed sample policy docs on startup (set to false after first run to avoid duplicates)
+app.rag.seed-on-startup: true
+
+# Ollama (default)
+spring.ai.ollama.base-url: http://localhost:11434
+spring.ai.ollama.chat.options.model: llama3.2
+spring.ai.ollama.embedding.options.model: nomic-embed-text
+
+---
+# OpenAI profile: use with -Dspring.profiles.active=openai and set OPENAI_API_KEY
+spring.config.activate.on-profile: openai
+spring.ai.model.chat: openai
+spring.ai.model.embedding: openai
+spring.ai.vectorstore.pgvector.dimensions: 1536
+
+---
+# Ollama profile (explicit): dimensions from model; set explicitly for schema
+spring.config.activate.on-profile: ollama
+spring.ai.vectorstore.pgvector.dimensions: 768

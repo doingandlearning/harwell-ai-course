@@ -1,0 +1,10 @@
+# Use one of these for the hallucination-check demo (synthetic only).
+
+# Option A — possibly non-existent version
+Summarise the breaking changes in Spring Boot 3.4.
+
+# Option B — precise API (easy to get wrong)
+What's the exact signature of ResponseEntity.ok() in Spring Framework 6.2?
+
+# Option C — mixed/outdated details
+How do I use the @Cacheable annotation with Redis in Spring Boot 3.0? Give the exact dependency and one example.

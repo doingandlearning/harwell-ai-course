@@ -1,0 +1,13 @@
+# Refinement examples
+
+## Initial prompt (produces poor output)
+Generate a Spring Boot controller for User
+
+## Refined prompt (after seeing poor output)
+Generate a Spring Boot 3 REST controller using Java 17. Use constructor injection (not @Autowired), return ResponseEntity<List<User>>, and include proper error handling. Don't use Optional for return types.
+
+## What changed
+- Added context: Spring Boot 3, Java 17
+- Added constraint: Constructor injection (not @Autowired)
+- Added constraint: Include error handling
+- Added constraint: Don't use Optional for return types

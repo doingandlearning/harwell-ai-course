@@ -1,0 +1,17 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: mcp-server-poc
+
+# MCP server: SSE over HTTP (clients like Claude Desktop can connect to this app)
+spring.ai.mcp.server:
+  protocol: SSE
+  type: SYNC
+
+# Optional: restrict base path if needed (default is exposed at root)
+# spring.ai.mcp.server.webmvc.path: /mcp
+
+# Optional: see HTTP requests in the console (useful to confirm Cursor is hitting the server)
+# logging.level.org.springframework.web.servlet.DispatcherServlet: DEBUG

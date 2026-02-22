@@ -1,0 +1,1 @@
+Write a small Java method that takes a list of strings and returns a map of string → length, using only the Java standard library. Prefer Java 17 style if applicable.
