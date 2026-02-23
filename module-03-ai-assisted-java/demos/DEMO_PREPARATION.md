@@ -4,11 +4,27 @@
 
 ---
 
+## Ready-to-use demo app
+
+A **pre-built Spring Boot 3 demo application** is in **`demo-app/`** in this directory. You can use it as-is instead of creating a project from scratch.
+
+- **Open** `demo-app/` in your IDE (or run `mvn spring-boot:run` from `demo-app/`).
+- **Verify:** `mvn test` — `UserServiceTest` should pass (1 test). `BookServiceTest` is empty for Demo 4.
+- **Demo 1:** Use the same prompts to generate entity/repository/service (or show on top of existing code).
+- **Demo 3:** Refactor `UserService.getActiveUserEmails` with AI; re-run `UserServiceTest`.
+- **Demo 4:** Generate tests for `BookService.findBooksByAuthor` into `BookServiceTest`.
+
+See **`demo-app/README.md`** for what each class is for. If you prefer to build the project yourself, follow the checklist below.
+
+---
+
 ## Pre-Demo Setup Checklist
 
 ### IDE Setup (Do This First)
 
-**Create Spring Boot 3 Project:**
+**Option A:** Use the pre-built **`demo-app/`** (see above).
+
+**Option B — Create Spring Boot 3 Project yourself:**
 
 1. **Project Structure:**
    ```

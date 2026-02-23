@@ -1,13 +1,41 @@
-# Refinement examples
+# Refinement examples — iterative prompt debugging
 
-## Initial prompt (produces poor output)
+## Round 1: Initial prompt (produces poor output)
+
+**Prompt:**
 Generate a Spring Boot controller for User
 
-## Refined prompt (after seeing poor output)
+**Typical poor output (use as backup if live run fails):**
+- Uses @Autowired field injection
+- Spring Boot 2 style (e.g. springfox, old validation)
+- No error handling; may return Optional or raw null
+- Single endpoint, no clarity on status codes or empty-list behaviour
+
+**Diagnosis:**
+- What's missing? — Version (SB 3?), error handling, response type
+- What's wrong? — @Autowired (we use constructor injection), old patterns
+- What would make it better? — Add context (SB 3, Java 17) and constraints (constructor injection, ResponseEntity, error handling)
+
+---
+
+## Round 1: Refined prompt (after first iteration)
+
+**Prompt:**
 Generate a Spring Boot 3 REST controller using Java 17. Use constructor injection (not @Autowired), return ResponseEntity<List<User>>, and include proper error handling. Don't use Optional for return types.
 
-## What changed
-- Added context: Spring Boot 3, Java 17
-- Added constraint: Constructor injection (not @Autowired)
-- Added constraint: Include error handling
-- Added constraint: Don't use Optional for return types
+**What we added:**
+- Context: Spring Boot 3, Java 17
+- Constraint: Constructor injection (not @Autowired)
+- Constraint: ResponseEntity<List<User>>, proper error handling
+- Constraint: Don't use Optional for return types
+
+---
+
+## Round 2 (optional): Second iteration — fix one more thing
+
+**Problem:** The generated controller returns 404 when the user list is empty. We want 200 with an empty array.
+
+**Refined prompt (add to previous):**
+For an empty list, return 200 OK with an empty array in the body, not 404.
+
+**Lesson:** Iterative refinement often takes 2–3 rounds. Read the output, pick one concrete fix, add it to the prompt, re-run.
