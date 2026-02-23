@@ -59,6 +59,8 @@ By the end of this module you will be able to:
 - <span class="fragment">✅ Fast: 30 seconds vs. 15 minutes</span>
 - <span class="fragment">✅ Consistent: Follows Spring Boot patterns</span>
 
+---
+
 **Prompt example:**
 
 > "Generate a Spring Boot 3 JPA entity for a Book with fields: id (Long, primary key), title (String), author (String), isbn (String, unique), publishedYear (Integer). Use Java 17."
