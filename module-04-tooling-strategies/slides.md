@@ -71,6 +71,8 @@ Both can be effective with the right approach.
 4. <span class="fragment">Get answer</span>
 5. <span class="fragment">Copy back to IDE</span>
 
+---
+
 **Problems:**
 
 - <span class="fragment">❌ Loses context (file names, project structure)</span>
@@ -106,6 +108,8 @@ Project structure: standard Maven layout.
 Spring Boot 3, Java 17, JPA
 ```
 
+---
+
 **Level 2**: Add file name and purpose
 
 ```
@@ -113,12 +117,16 @@ Spring Boot 3, Java 17, JPA
 File: UserService.java — service layer for user management
 ```
 
+---
+
 **Level 3**: Include relevant dependencies
 
 ```
 Spring Boot 3, Java 17, JPA, Spring Security
 File: UserService.java — service layer
 ```
+
+---
 
 **Level 4**: Describe specific problem
 
@@ -136,6 +144,8 @@ Problem: Need to add validation for email format
 - <span class="fragment">Paste back with review (don't blindly accept)</span>
 - <span class="fragment">Use diff view if possible</span>
 - <span class="fragment">Test immediately after pasting</span>
+
+---
 
 **When sidecar works well:**
 
@@ -155,6 +165,8 @@ Problem: Need to add validation for email format
 - <span class="fragment">Inline completion: Suggestions as you type</span>
 - <span class="fragment">Chat within IDE: No browser switching</span>
 
+---
+
 **Benefits:**
 
 - <span class="fragment">✅ Project context automatically included</span>
@@ -171,10 +183,14 @@ Problem: Need to add validation for email format
 - <span class="fragment">Shows suggestions as you type</span>
 - <span class="fragment">Accept/reject individual suggestions</span>
 
+---
+
 **Feature 2: Chat with project context**
 
 - <span class="fragment">IDE includes file structure automatically</span>
 - <span class="fragment">Can reference specific files</span>
+
+---
 
 **Feature 3: Diff views**
 
@@ -190,6 +206,8 @@ Problem: Need to add validation for email format
 - <span class="fragment">⚠️ Context window limits</span>
 - <span class="fragment">⚠️ May require enterprise license</span>
 - <span class="fragment">⚠️ Different features across IDEs</span>
+
+---
 
 **When integrated works well:**
 
@@ -249,6 +267,8 @@ Problem: Need to add validation for email format
 - <span class="fragment">Explaining code</span>
 - <span class="fragment">Learning concepts</span>
 
+---
+
 **Use inline when:**
 
 - <span class="fragment">Local edits</span>
@@ -267,6 +287,8 @@ Problem: Need to add validation for email format
 - <span class="fragment">Team members use different IDEs</span>
 - <span class="fragment">Some have enterprise AI, some don't</span>
 - <span class="fragment">Need consistent workflows</span>
+
+---
 
 **Strategies:**
 

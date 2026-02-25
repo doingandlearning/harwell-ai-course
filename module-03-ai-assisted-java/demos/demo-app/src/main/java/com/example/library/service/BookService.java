@@ -26,4 +26,41 @@ public class BookService {
         }
         return repository.findByAuthorContainingIgnoreCase(author);
     }
+
+    public List<Book> findBooksByAuthorAndTitle(String author, String title) {
+        if (author == null || author.trim().isEmpty() || title == null || title.trim().isEmpty()) {
+            return Collections.emptyList();
+        }
+        return repository.findByAuthorContainingIgnoreCaseAndTitleContainingIgnoreCase(author, title);
+    }
+
+    /**
+     * addBook method to add a new book to the repository
+     * @param book
+     * @return the added book
+     */
+    public Book addBook(Book book) {
+        return repository.save(book);
+    }
+
+    /**
+     * updateBook method to update a book in the repository
+     * @param book
+     * @return the updated book
+     */
+    public Book updateBook(Book book) {
+        return repository.save(book);
+    }
+
+    /**
+     * deleteBook method to delete a book from the repository
+     * @param id
+     * @return the deleted book
+     */
+    public void deleteBook(Long id) {
+        repository.deleteById(id);
+    }
+
+
+    
 }

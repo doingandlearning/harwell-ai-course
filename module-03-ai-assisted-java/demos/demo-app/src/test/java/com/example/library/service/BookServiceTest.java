@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -105,5 +106,106 @@ class BookServiceTest {
         service.findBooksByAuthor(author);
 
         verify(repository).findByAuthorContainingIgnoreCase("Rowling");
+    }
+
+    // --- findBooksByAuthorAndTitle ---
+
+    @Test
+    void findBooksByAuthorAndTitle_withValidAuthorAndTitle_returnsBooksFromRepository() {
+        String author = "Tolkien";
+        String title = "Hobbit";
+        Book book = new Book(1L, "The Hobbit", "J.R.R. Tolkien", "978-0-54", 1937);
+        when(repository.findByAuthorContainingIgnoreCaseAndTitleContainingIgnoreCase(author, title))
+                .thenReturn(Arrays.asList(book));
+
+        List<Book> result = service.findBooksByAuthorAndTitle(author, title);
+
+        assertEquals(1, result.size());
+        assertEquals("The Hobbit", result.get(0).getTitle());
+        verify(repository).findByAuthorContainingIgnoreCaseAndTitleContainingIgnoreCase(author, title);
+    }
+
+    @Test
+    void findBooksByAuthorAndTitle_withNullAuthor_returnsEmptyList() {
+        List<Book> result = service.findBooksByAuthorAndTitle(null, "Hobbit");
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void findBooksByAuthorAndTitle_withEmptyAuthor_returnsEmptyList() {
+        List<Book> result = service.findBooksByAuthorAndTitle("", "Hobbit");
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void findBooksByAuthorAndTitle_withNullTitle_returnsEmptyList() {
+        List<Book> result = service.findBooksByAuthorAndTitle("Tolkien", null);
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void findBooksByAuthorAndTitle_withEmptyTitle_returnsEmptyList() {
+        List<Book> result = service.findBooksByAuthorAndTitle("Tolkien", "");
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void findBooksByAuthorAndTitle_whenNoMatchingBooks_returnsEmptyList() {
+        String author = "Unknown";
+        String title = "Nothing";
+        when(repository.findByAuthorContainingIgnoreCaseAndTitleContainingIgnoreCase(author, title))
+                .thenReturn(Collections.emptyList());
+
+        List<Book> result = service.findBooksByAuthorAndTitle(author, title);
+
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+        verify(repository).findByAuthorContainingIgnoreCaseAndTitleContainingIgnoreCase(author, title);
+    }
+
+    // --- addBook ---
+
+    @Test
+    void addBook_withValidBook_returnsSavedBookAndCallsRepository() {
+        Book book = new Book(null, "New Book", "Author", "978-0-99", 2020);
+        Book saved = new Book(1L, "New Book", "Author", "978-0-99", 2020);
+        when(repository.save(any(Book.class))).thenReturn(saved);
+
+        Book result = service.addBook(book);
+
+        assertNotNull(result);
+        assertEquals(1L, result.getId());
+        assertEquals("New Book", result.getTitle());
+        verify(repository).save(book);
+    }
+
+    // --- updateBook ---
+
+    @Test
+    void updateBook_withValidBook_returnsUpdatedBookAndCallsRepository() {
+        Book book = new Book(1L, "Updated Title", "Author", "978-0-99", 2020);
+        when(repository.save(any(Book.class))).thenReturn(book);
+
+        Book result = service.updateBook(book);
+
+        assertNotNull(result);
+        assertEquals(1L, result.getId());
+        assertEquals("Updated Title", result.getTitle());
+        verify(repository).save(book);
+    }
+
+    // --- deleteBook ---
+
+    @Test
+    void deleteBook_withValidId_callsRepositoryDeleteById() {
+        Long id = 1L;
+
+        service.deleteBook(id);
+
+        verify(repository).deleteById(id);
     }
 }

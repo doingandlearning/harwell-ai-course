@@ -45,6 +45,8 @@ By the end of this module you will be able to:
 - <span class="fragment">❌ AI can't access your database schema</span>
 - <span class="fragment">❌ Context switching is slow and error-prone</span>
 
+---
+
 **The pain:**
 
 - <span class="fragment">Scenario: "Explain how this module works"</span>
@@ -64,6 +66,8 @@ By the end of this module you will be able to:
 - <span class="fragment">✅ Structured, safe access to files/repos/databases</span>
 - <span class="fragment">✅ Less manual copy-paste</span>
 
+---
+
 **Key idea:**
 
 - <span class="fragment">Context servers expose data (filesystem, git, database)</span>
@@ -81,6 +85,8 @@ By the end of this module you will be able to:
 - <span class="fragment">❌ No project structure awareness</span>
 - <span class="fragment">❌ Can't reference other files</span>
 - <span class="fragment">❌ Context is lost</span>
+
+---
 
 **With MCP:**
 
@@ -100,11 +106,15 @@ By the end of this module you will be able to:
 - <span class="fragment">Examples: Filesystem server, Git server, Database server</span>
 - <span class="fragment">Standardized way to access different data sources</span>
 
+---
+
 **Clients:**
 
 - <span class="fragment">AI tools that request context</span>
 - <span class="fragment">Examples: Claude Desktop, IDEs, AI applications</span>
 - <span class="fragment">Request context through MCP protocol</span>
+
+---
 
 **The protocol:**
 
@@ -149,11 +159,15 @@ By the end of this module you will be able to:
 - <span class="fragment">✅ Can limit what AI can see (e.g. "only this module")</span>
 - <span class="fragment">✅ Less risky than manual copy-paste</span>
 
+---
+
 **Implication 2: Less copy-paste**
 
 - <span class="fragment">✅ AI can request context automatically</span>
 - <span class="fragment">✅ No manual file copying</span>
 - <span class="fragment">✅ Faster iteration</span>
+
+---
 
 **Implication 3: Still early**
 

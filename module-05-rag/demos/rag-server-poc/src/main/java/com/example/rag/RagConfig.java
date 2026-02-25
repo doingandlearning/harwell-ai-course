@@ -15,7 +15,7 @@ public class RagConfig {
     public QuestionAnswerAdvisor questionAnswerAdvisor(VectorStore vectorStore) {
         return QuestionAnswerAdvisor.builder(vectorStore)
                 .searchRequest(SearchRequest.builder()
-                        .similarityThreshold(0.75)
+                        .similarityThreshold(0.5)
                         .topK(5)
                         .build())
                 .build();

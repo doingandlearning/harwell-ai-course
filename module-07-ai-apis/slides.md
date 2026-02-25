@@ -1,4 +1,4 @@
-# Developing with AI APIs (Condensed)
+# Developing with AI APIs
 
 **Module 7 — Harwell Prompt Engineering**
 
@@ -23,6 +23,8 @@ By the end of this module you will be able to:
 - <span class="fragment">**MCP** connects AI to live systems</span>
 - <span class="fragment">MCP uses APIs under the hood</span>
 
+---
+
 **Frame explicitly:**
 
 - <span class="fragment">This is the **delta** — what's different from standard REST APIs</span>
@@ -42,12 +44,16 @@ By the end of this module you will be able to:
 - <span class="fragment">Simple request/response</span>
 - <span class="fragment">Predictable costs</span>
 
+---
+
 **LLM APIs break these:**
 
 - <span class="fragment">❌ Stateful conversations vs. stateless</span>
 - <span class="fragment">❌ Non-deterministic responses</span>
 - <span class="fragment">❌ Streaming chunks vs. complete response</span>
 - <span class="fragment">❌ Token-based costs vs. request-based</span>
+
+---
 
 **Why it matters:**
 
@@ -66,6 +72,8 @@ By the end of this module you will be able to:
 - <span class="fragment">Example: GET /users/123 → returns user data</span>
 - <span class="fragment">No memory between requests</span>
 - <span class="fragment">Simple, predictable</span>
+
+---
 
 **LLM APIs:**
 
@@ -87,12 +95,16 @@ By the end of this module you will be able to:
 - <span class="fragment">API maintains conversation state</span>
 - <span class="fragment">✅ Simpler for client</span>
 
+---
+
 **Option 2: Message list**
 
 - <span class="fragment">You maintain message history</span>
 - <span class="fragment">Send full message list with each request</span>
 - <span class="fragment">You control state</span>
 - <span class="fragment">✅ More control</span>
+
+---
 
 **When to use:**
 
@@ -107,6 +119,8 @@ By the end of this module you will be able to:
 
 - <span class="fragment">"Why is this happening?"</span>
 - <span class="fragment">"How do I control it?"</span>
+
+---
 
 **Why non-deterministic?**
 
@@ -125,10 +139,14 @@ By the end of this module you will be able to:
 - <span class="fragment">**Medium (0.5-0.7)**: Balanced</span>
 - <span class="fragment">**High (0.8-1.0)**: More creative, varied</span>
 
+---
+
 **Top-P (nucleus sampling)**: Controls diversity
 
 - <span class="fragment">**Low (0.1-0.3)**: Focused on most likely tokens</span>
 - <span class="fragment">**High (0.9-1.0)**: More diverse options</span>
+
+---
 
 **When you need reproducibility:**
 
@@ -146,6 +164,8 @@ By the end of this module you will be able to:
 - <span class="fragment">✅ Factual answers</span>
 - <span class="fragment">✅ Tests</span>
 - <span class="fragment">✅ When you need consistency</span>
+
+---
 
 **Medium temperature (0.5-0.7):**
 
@@ -169,6 +189,8 @@ By the end of this module you will be able to:
 - <span class="fragment">❌ User sees nothing until complete</span>
 - <span class="fragment">❌ Poor UX for long responses</span>
 
+---
+
 **The solution:**
 
 - <span class="fragment">**Streaming**: Responses come in chunks (tokens)</span>
@@ -186,6 +208,8 @@ By the end of this module you will be able to:
 - <span class="fragment">Client buffers and displays as received</span>
 - <span class="fragment">**Tokens/sec**: Measure of streaming speed</span>
 - <span class="fragment">**Buffering**: Client may buffer before displaying</span>
+
+---
 
 **Implementation considerations:**
 
@@ -205,6 +229,8 @@ By the end of this module you will be able to:
 - <span class="fragment">❌ Easy to underestimate costs</span>
 - <span class="fragment">❌ Costs scale with usage</span>
 
+---
+
 **Token economics:**
 
 - <span class="fragment">**Input tokens**: What you send (prompt + context)</span>
@@ -222,6 +248,8 @@ By the end of this module you will be able to:
 - <span class="fragment">**Frequency**: More requests = higher cost</span>
 - <span class="fragment">**Model**: Different models have different prices</span>
 - <span class="fragment">**Context**: Including context increases input tokens</span>
+
+---
 
 **Cost optimization:**
 
@@ -241,6 +269,8 @@ By the end of this module you will be able to:
 - <span class="fragment">Example pricing: $0.01 per 1K input, $0.03 per 1K output</span>
 - <span class="fragment">Typical request: 500 input + 500 output = ~$0.02</span>
 - <span class="fragment">Scale: 1000 requests/day = ~$20/day = ~$600/month</span>
+
+---
 
 **Monitor and adjust:**
 

@@ -60,6 +60,8 @@ By the end of this module you will be able to:
 - <span class="fragment">**Augment** the prompt with those chunks as context</span>
 - <span class="fragment">**Generate** answer based on your actual documents</span>
 
+---
+
 **Result:**
 
 - <span class="fragment">✅ AI can answer questions about your internal knowledge</span>
@@ -76,6 +78,8 @@ By the end of this module you will be able to:
 - <span class="fragment">AI response: Generic answer based on training data</span>
 - <span class="fragment">❌ Not your actual policy</span>
 - <span class="fragment">❌ May be outdated or wrong</span>
+
+---
 
 **With RAG:**
 
@@ -96,11 +100,15 @@ By the end of this module you will be able to:
 - <span class="fragment">Why? Documents too large for context window</span>
 - <span class="fragment">Example: Policy document → 10 chunks of ~500 words each</span>
 
+---
+
 **Step 2: Embeddings**
 
 - <span class="fragment">Convert text chunks to numerical representations (embeddings)</span>
 - <span class="fragment">Why? Allows similarity search</span>
 - <span class="fragment">Example: "data retention policy" embedding is similar to "data storage rules" embedding</span>
+
+---
 
 **Step 3: Vector database**
 
@@ -119,6 +127,8 @@ By the end of this module you will be able to:
 - <span class="fragment">**Retrieve**: Find top 3-5 most similar chunks from vector DB</span>
 - <span class="fragment">**Augment prompt**: Add chunks to prompt as context</span>
 - <span class="fragment">**Generate**: LLM generates answer based on retrieved chunks</span>
+
+---
 
 **The complete flow:**
 
@@ -148,12 +158,16 @@ Documents → Chunks → Embeddings → Vector DB → Retrieve → Augment → G
 - <span class="fragment">✅ Documents are too large for context window</span>
 - <span class="fragment">✅ You want to add knowledge without retraining</span>
 
+---
+
 **Fine-tuning** — use when:
 
 - <span class="fragment">✅ You need model to learn specific style or format</span>
 - <span class="fragment">✅ You have large dataset of examples</span>
 - <span class="fragment">✅ You want model behavior to change permanently</span>
 - <span class="fragment">⚠️ Expensive, requires retraining for updates</span>
+
+---
 
 **Long context windows** — use when:
 
@@ -185,12 +199,18 @@ Documents → Chunks → Embeddings → Vector DB → Retrieve → Augment → G
 - <span class="fragment">✅ Faster than manual search</span>
 - <span class="fragment">✅ Answers grounded in actual docs</span>
 
+
+---
+
 **Use case 2: Q&A over policies**
 
 - <span class="fragment">Problem: "What's our policy on remote work?"</span>
 - <span class="fragment">RAG: Retrieve policy document, answer based on actual policy</span>
 - <span class="fragment">✅ Accurate, cites source</span>
 - <span class="fragment">✅ No manual lookup needed</span>
+
+
+---
 
 **Use case 3: Codebase Q&A**
 

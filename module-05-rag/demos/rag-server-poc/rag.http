@@ -1,0 +1,6 @@
+POST http://localhost:8080/api/rag
+Content-Type: application/json
+
+{
+    "query": "I have some data that is 5 years old, can I bin it?"
+}

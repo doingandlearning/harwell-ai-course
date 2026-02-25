@@ -1,0 +1,13 @@
+# use ollama apito get a fact about space with a temperature of 0.2
+
+POST http://localhost:11434/api/generate
+Content-Type: application/json
+
+{
+    "model": "codellama",
+    "prompt": "Give me 4 uses of a paper clip",
+    "temperature": 0.9,
+		
+	"stream": false
+
+}
