@@ -11,6 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -207,5 +208,73 @@ class BookServiceTest {
         service.deleteBook(id);
 
         verify(repository).deleteById(id);
+    }
+
+    // --- addReviewToBook ---
+
+    @Test
+    void addReviewToBook_withValidBookIdAndReview_addsReviewAndSaves() {
+        Long bookId = 1L;
+        String review = "Great read!";
+        Book book = new Book(bookId, "The Hobbit", "J.R.R. Tolkien", "978-0-54", 1937);
+        when(repository.findById(bookId)).thenReturn(Optional.of(book));
+        when(repository.save(any(Book.class))).thenReturn(book);
+
+        service.addReviewToBook(bookId, review);
+
+        assertTrue(book.getReviews().contains(review));
+        verify(repository).findById(bookId);
+        verify(repository).save(book);
+    }
+
+    @Test
+    void addReviewToBook_appendsToExistingReviews() {
+        Long bookId = 1L;
+        Book book = new Book(bookId, "The Hobbit", "J.R.R. Tolkien", "978-0-54", 1937);
+        book.getReviews().add("First review");
+        when(repository.findById(bookId)).thenReturn(Optional.of(book));
+        when(repository.save(any(Book.class))).thenReturn(book);
+
+        service.addReviewToBook(bookId, "Second review");
+
+        assertEquals(2, book.getReviews().size());
+        assertEquals("First review", book.getReviews().get(0));
+        assertEquals("Second review", book.getReviews().get(1));
+        verify(repository).save(book);
+    }
+
+    @Test
+    void addReviewToBook_withNullBookId_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () ->
+                service.addReviewToBook(null, "A review"));
+    }
+
+    @Test
+    void addReviewToBook_withNullReview_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () ->
+                service.addReviewToBook(1L, null));
+    }
+
+    @Test
+    void addReviewToBook_withEmptyReview_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () ->
+                service.addReviewToBook(1L, ""));
+    }
+
+    @Test
+    void addReviewToBook_withBlankReview_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () ->
+                service.addReviewToBook(1L, "   "));
+    }
+
+    @Test
+    void addReviewToBook_whenBookNotFound_throwsIllegalArgumentException() {
+        Long bookId = 999L;
+        when(repository.findById(bookId)).thenReturn(Optional.empty());
+
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () ->
+                service.addReviewToBook(bookId, "A review"));
+        assertTrue(ex.getMessage().contains("Book not found"));
+        verify(repository).findById(bookId);
     }
 }

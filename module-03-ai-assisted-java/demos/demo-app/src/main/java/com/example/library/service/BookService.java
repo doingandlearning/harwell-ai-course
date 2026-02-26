@@ -20,6 +20,42 @@ public class BookService {
         this.repository = repository;
     }
 
+    /*
+    * deleteBooksByAuthor method to delete all books by an author
+    * @param author
+    * @return the number of books deleted
+    */
+    public void deleteBooksByAuthor(String author) {
+        // Add a log message that the books are being deleted
+        System.out.println("Deleting books by author: " + author);
+        repository.deleteByAuthorContainingIgnoreCase(author);
+    }
+
+    /**
+     * Adds a review to the specified book by its ID.
+     * 
+     * @param bookId the ID of the book to add the review to
+     * @param review the review text to be added
+     * @throws IllegalArgumentException if the book does not exist or review is null/blank
+     */
+    public void addReviewToBook(Long bookId, String review) {
+        if (bookId == null) {
+            throw new IllegalArgumentException("Book ID cannot be null.");
+        }
+        if (review == null || review.trim().isEmpty()) {
+            throw new IllegalArgumentException("Review cannot be null or empty.");
+        }
+        Book book = repository.findById(bookId).orElse(null);
+        if (book == null) {
+            throw new IllegalArgumentException("Book not found for ID: " + bookId);
+        }
+        if (book.getReviews() == null) {
+            book.setReviews(new java.util.ArrayList<>());
+        }
+        book.getReviews().add(review);
+        repository.save(book);
+    }
+
     public List<Book> findBooksByAuthor(String author) {
         if (author == null || author.trim().isEmpty()) {
             return Collections.emptyList();

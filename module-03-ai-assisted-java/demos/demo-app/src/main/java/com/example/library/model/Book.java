@@ -2,6 +2,9 @@ package com.example.library.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Demo entity for Module 3 — Demo 1 (generation) and Demo 4 (unit testing).
  * Synthetic example for course use only.
@@ -25,6 +28,11 @@ public class Book {
 
     private Integer publishedYear;
 
+    @ElementCollection
+    @CollectionTable(name = "book_reviews", joinColumns = @JoinColumn(name = "book_id"))
+    @Column(name = "review")
+    private List<String> reviews = new ArrayList<>();
+
     public Book() {}
 
     public Book(Long id, String title, String author, String isbn, Integer publishedYear) {
@@ -45,4 +53,6 @@ public class Book {
     public void setIsbn(String isbn) { this.isbn = isbn; }
     public Integer getPublishedYear() { return publishedYear; }
     public void setPublishedYear(Integer publishedYear) { this.publishedYear = publishedYear; }
+    public List<String> getReviews() { return reviews; }
+    public void setReviews(List<String> reviews) { this.reviews = reviews != null ? reviews : new ArrayList<>(); }
 }
